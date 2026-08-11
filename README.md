@@ -1,6 +1,11 @@
 # NextGen English School — Landing
 
-Landing page per **NextGen English School**, scuola di inglese a Tropea (VV).
+Landing page multi-pagina per **NextGen English School**, scuola di inglese a Tropea (VV).
+
+## Live
+
+- **GitHub Pages:** https://evolofabio.github.io/nextgen-english-school/
+- **Repository:** https://github.com/evolofabio/nextgen-english-school
 
 ## Sviluppo
 
@@ -15,6 +20,14 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+Per GitHub Pages:
+
+```bash
+VITE_BASE=/nextgen-english-school/ npm run build
+```
+
+Per Vercel: importa il repository su [vercel.com/new](https://vercel.com/new) (framework Vite, output `dist`).
 
 ## Contenuti
 
