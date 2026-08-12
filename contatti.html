@@ -56,20 +56,63 @@
         </div>
       </header>
 
-      <section class="contact">
-        <div class="contact__left" data-reveal>
-          <h2>Come contattarci</h2>
+      <section class="contact contact--form">
+        <div class="contact__form-wrap" data-reveal>
+          <h2>Scrivici</h2>
           <p class="contact__desc">
-            Il modo più veloce è chiamarci o scriverci su Instagram.
-            Durante il colloquio gratuito valutiamo il livello e
-            ti proponiamo il percorso più adatto — senza impegno.
+            Compila il modulo e ti rispondiamo entro 24 ore.
+            Puoi anche chiamarci o scriverci su Instagram.
           </p>
-          <div class="contact__btns">
-            <a class="btn-primary" href="tel:+393472909887">+39 347 290 9887</a>
-            <a class="btn-secondary" href="https://www.instagram.com/nextgenenglishschool/" target="_blank" rel="noopener noreferrer">
-              Scrivi su Instagram
-            </a>
-          </div>
+
+          <form class="form" data-contact-form novalidate>
+            <div class="form__row form__row--2">
+              <div class="form__field">
+                <label for="nome">Nome e cognome <span aria-hidden="true">*</span></label>
+                <input type="text" id="nome" name="nome" autocomplete="name" required placeholder="Mario Rossi" />
+              </div>
+              <div class="form__field">
+                <label for="telefono">Telefono</label>
+                <input type="tel" id="telefono" name="telefono" autocomplete="tel" placeholder="+39 347 000 0000" />
+              </div>
+            </div>
+
+            <div class="form__field">
+              <label for="email">Email <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required placeholder="nome@email.it" />
+            </div>
+
+            <div class="form__field">
+              <label for="corso">Corso di interesse</label>
+              <select id="corso" name="corso">
+                <option value="">Seleziona un percorso</option>
+                <option value="Bambini (5–10 anni)">Bambini (5–10 anni)</option>
+                <option value="Ragazzi (11–18 anni)">Ragazzi (11–18 anni)</option>
+                <option value="Adulti">Adulti</option>
+                <option value="Cambridge">Preparazione Cambridge</option>
+                <option value="Viaggi-studio">Viaggi-studio</option>
+                <option value="Non so ancora">Non so ancora</option>
+              </select>
+            </div>
+
+            <div class="form__field">
+              <label for="messaggio">Messaggio <span aria-hidden="true">*</span></label>
+              <textarea id="messaggio" name="messaggio" rows="5" required placeholder="Età, livello attuale, obiettivi…"></textarea>
+            </div>
+
+            <label class="form__check">
+              <input type="checkbox" name="privacy" required />
+              <span>Ho letto l'informativa privacy e acconsento al trattamento dei dati per essere ricontattato.</span>
+            </label>
+
+            <!-- Honeypot anti-spam -->
+            <input type="text" name="_gotcha" class="form__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="form__actions">
+              <button class="btn-primary" type="submit">Invia richiesta</button>
+            </div>
+
+            <p class="form__status" data-form-status role="status" aria-live="polite" hidden></p>
+          </form>
         </div>
 
         <div class="contact__right" data-reveal>
@@ -113,6 +156,13 @@
           >
             Apri in Google Maps →
           </a>
+
+          <div class="contact__quick">
+            <a class="btn-secondary" href="tel:+393472909887">Chiama ora</a>
+            <a class="btn-secondary" href="https://www.instagram.com/nextgenenglishschool/" target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+          </div>
         </div>
       </section>
 

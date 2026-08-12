@@ -71,3 +71,66 @@ if (!reduced && 'IntersectionObserver' in window) {
 } else {
   revealEls.forEach(el => el.classList.add('on'));
 }
+
+/* ── Contact form ── */
+const contactForm = document.querySelector('[data-contact-form]');
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/info@nextgenenglishschool.it';
+
+if (contactForm) {
+  const statusEl = contactForm.querySelector('[data-form-status]');
+  const submitBtn = contactForm.querySelector('[type="submit"]');
+  const defaultBtnText = submitBtn?.textContent ?? 'Invia richiesta';
+
+  const showStatus = (message, type) => {
+    if (!statusEl) return;
+    statusEl.hidden = false;
+    statusEl.textContent = message;
+    statusEl.className = `form__status form__status--${type}`;
+  };
+
+  contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+
+    const hp = contactForm.querySelector('[name="_gotcha"]');
+    if (hp?.value) return;
+
+    const data = Object.fromEntries(new FormData(contactForm));
+    const payload = {
+      nome: data.nome,
+      email: data.email,
+      telefono: data.telefono || 'Non indicato',
+      corso: data.corso || 'Non specificato',
+      messaggio: data.messaggio,
+      _subject: `Richiesta da ${data.nome} — NextGen English School`,
+      _template: 'table',
+      _captcha: 'false',
+    };
+
+    contactForm.classList.add('is-loading');
+    if (submitBtn) submitBtn.textContent = 'Invio in corso…';
+    statusEl.hidden = true;
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error('submit failed');
+
+      contactForm.reset();
+      showStatus('Messaggio inviato! Ti risponderemo entro 24 ore.', 'ok');
+    } catch {
+      showStatus('Invio non riuscito. Chiama il +39 347 290 9887 o scrivici su Instagram.', 'err');
+    } finally {
+      contactForm.classList.remove('is-loading');
+      if (submitBtn) submitBtn.textContent = defaultBtnText;
+    }
+  });
+}
